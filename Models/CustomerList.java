@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Models;
 
 import java.util.ArrayList;
@@ -7,13 +11,14 @@ import java.util.List;
  *
  * @author jprod
  */
-public class CustomerList {
+public class CustomerList implements IManager<Customer> {
     private final List<Customer> customerList;
 
     public CustomerList() {
         customerList = new ArrayList<>();
     }
 
+    @Override
     public boolean add(Customer customer){
         Customer current = get(customer);
         if(current!=null)
@@ -22,6 +27,7 @@ public class CustomerList {
         return true;
     }
 
+    @Override
     public Customer get(Customer customer) {
         for (Customer current : customerList) {
             if (current.getId() == customer.getId()) {
@@ -31,6 +37,7 @@ public class CustomerList {
         return null;
     }
 
+    @Override
     public boolean set(Customer customer){
         if (customer != null) {
             Customer current=get(customer);
@@ -42,7 +49,9 @@ public class CustomerList {
         }
         return false;
     }
+
     
+    @Override
     public boolean remove(Customer customer) {
         if (customer != null && get(customer)!=null) {
             customerList.remove(customer);
@@ -51,11 +60,11 @@ public class CustomerList {
         return false;
     }
 
+    @Override
     public List getAll() {
         if (customerList.isEmpty()) {
             return null;
         }
         return customerList;
     }
-    
 }
