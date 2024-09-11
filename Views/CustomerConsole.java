@@ -4,23 +4,25 @@
  */
 package Views;
 
+import Controllers.CustomerController;
 import Models.Customer;
 import Models.CustomerList;
 import Utils.UtilConsole;
 import Utils.UtilDate;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author jprod
  */
-public class CustomerConsole{
-    CustomerList list;
-    
+public class CustomerConsole implements IView<Customer> {
+    CustomerController controller;
 
-    public CustomerConsole() {
-        list=new CustomerList();
+    public void setController(CustomerController controller) {
+        this.controller = controller;
     }
     
     public void show(){
@@ -57,84 +59,60 @@ public class CustomerConsole{
         return UtilConsole.getInputInt("Seleccione una opcion");
     }
     
-    private void insert(){
+    @Override
+    public void insert(){
         int id= UtilConsole.getInputInt("Ingrese el id");
         String name=UtilConsole.getInputString("Ingrese el Nombre");
         String date=UtilConsole.getInputString("Ingrese la Fecha de Nacimiento");
         LocalDate birthDate = UtilDate.stringToLocalDate(date);        
         String phone=UtilConsole.getInputString("Ingrese el Telefono");
         String email=UtilConsole.getInputString("Ingrese el correo electronico");
-        Customer customer = new Customer(id,name,birthDate,phone,email);
-        if (list.add(customer))
-            showMessage("Cliente agregado.");
-        else
-            showErrorMessage("Error al agregar.");
+        controller.insert(id, name, birthDate, phone, email);
     }
     
-    private void update(){
+    @Override
+    public void update(){
         int id= UtilConsole.getInputInt("Ingrese el id");
-        Customer customer = new Customer(id);
-        customer=list.get(customer);
-        if (customer!=null){
-            String phone=UtilConsole.getInputString("Ingrese el Telefono");
-            customer.setPhone(phone);
-            if (list.set(customer))
-                showMessage("Cliente actualizado.");
-            else
-               showErrorMessage("Error al actualizar.");
-        }else{
-            showErrorMessage("Error cliente no encontrado");
-        }
+        String phone=UtilConsole.getInputString("Ingrese el Telefono");
+        controller.update(id, phone);
     }
     
-    private void delete(){
+    @Override
+    public void delete(){
         int id= UtilConsole.getInputInt("Ingrese el id");
-        Customer customer = new Customer(id);
-        customer=list.get(customer);
-        if (customer!=null){
-            list.remove(customer);
-            showMessage("Cliente eliminado.");
-        }else{
-            showErrorMessage("Error cliente no encontrado");
-        }
+        controller.delete(id);
     }
     
-    private void read(){
+    @Override
+    public void read(){
         int id= UtilConsole.getInputInt("Ingrese el id");
-        Customer customer = new Customer(id);
-        customer=list.get(customer);
-        if (customer!=null){
-            display(customer);
-        }else{
-            showErrorMessage("Error cliente no encontrado");
-        }
+        controller.read(id);
     }
     
-    private void readAll(){
-        List<Customer> customers=list.getAll();
-        if(customers!=null){
-            displayAll(customers);
-        }else{
-            showMessage("No hay datos");
-        }
-        
+    @Override
+    public void readAll(){
+        controller.readAll();
     }
     
+    @Override
     public void showMessage(String str){
         UtilConsole.print(str);
-        UtilConsole.getInputString("Presione enter para continuar");
+        //UtilConsole.getInputString("Presione enter para continuar");
     }
     
+    @Override
     public void showErrorMessage(String str){
         UtilConsole.print(str,UtilConsole.COLOR_RED);
         UtilConsole.getInputString("Presione enter para continuar");
     }
     
+    @Override
     public void display(Customer customer){
         UtilConsole.print(customer.toString(), UtilConsole.COLOR_BLUE);
         UtilConsole.getInputString("Presione enter para continuar");
     }
     
+    @Override
     public void displayAll(List<Customer> customers){
         for(Customer customer:customers){
             UtilConsole.print(customer.toString(), UtilConsole.COLOR_GREEN);
