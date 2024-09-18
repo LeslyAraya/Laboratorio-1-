@@ -5,8 +5,8 @@
 package main;
 
 import Controllers.CustomerController;
-import Models.CustomerList;
-import Views.CustomerConsole;
+import Models.CustomerSet;
+import Views.CustomerFrame;
 
 /**
  *
@@ -18,8 +18,8 @@ public class CustomerMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {       
-        CustomerList model = new CustomerList();
-        CustomerConsole view = new CustomerConsole();
+        CustomerSet model = new CustomerSet();
+        CustomerFrame view = new CustomerFrame();
         CustomerController controller = new CustomerController(model,view);
         view.setController(controller);
         view.show();
