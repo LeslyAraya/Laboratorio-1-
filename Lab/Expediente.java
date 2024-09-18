@@ -28,7 +28,7 @@ public class Expediente {
         for (Cita cita : citas) {
             System.out.println("Cita: " + cita.getFechaHora());
             cita.mostrarHojaMedica();
-            System.out.println("-------------------");
+            System.out.println("-----------------");
         }
     }
 }
