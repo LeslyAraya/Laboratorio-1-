@@ -70,4 +70,5 @@ public class Cita {
     public String toString() {
         return "Cita{" + "hora=" + hora + ", paciente=" + paciente + ", medico=" + medico + ", motivo=" + motivo + '}';
     } 
+
 }

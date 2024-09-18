@@ -23,7 +23,6 @@ public class Paciente {
         this.historialMedico = new ArrayList<>();
     }
 
-    // Getters y Setters
     public String getNombre() {
         return nombre;
     }

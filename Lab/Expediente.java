@@ -27,7 +27,7 @@ public class Expediente {
     public void mostrarHistorial() {
         for (Cita cita : citas) {
             System.out.println("Cita: " + cita.getFechaHora());
-            cita.mostrarHojaMedica();
+            cita.HojaMedica();
             System.out.println("-----------------");
         }
     }
