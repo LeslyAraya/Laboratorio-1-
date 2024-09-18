@@ -65,10 +65,15 @@ public class Cita {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
+    
 
     @Override
     public String toString() {
         return "Cita{" + "hora=" + hora + ", paciente=" + paciente + ", medico=" + medico + ", motivo=" + motivo + '}';
     } 
+
+    void HojaMedica() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

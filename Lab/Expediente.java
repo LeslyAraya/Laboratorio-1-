@@ -24,11 +24,11 @@ public class Expediente {
         return citas;
     }
 
-    public void mostrarHistorial() {
+    public void ControladorCita() {
         for (Cita cita : citas) {
-            System.out.println("Cita: " + cita.getFechaHora());
+            System.out.println("Cita: " + cita.getHora());
             cita.HojaMedica();
-            System.out.println("-----------------");
+            System.out.println("-------------------");
         }
     }
 }
