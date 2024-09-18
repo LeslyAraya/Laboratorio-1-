@@ -10,11 +10,19 @@ import java.util.List;
 
 /**
  *
+<<<<<<< HEAD
  * @author user
  */
 public class CustomerSet implements IManager <Customer> {
     private HashSet <Customer> set;
     
+=======
+ * @author thyfa
+ */
+public class CustomerSet implements IManager <Customer> {
+    private HashSet<Customer> set;
+
+>>>>>>> b7fec65 (Se agregan cambios)
    public CustomerSet(){
     set= new HashSet<Customer>();
 }
@@ -59,6 +67,10 @@ public class CustomerSet implements IManager <Customer> {
         return new ArrayList<> (set);
     }
     
+<<<<<<< HEAD
 
     
 }
+=======
+}
+>>>>>>> b7fec65 (Se agregan cambios)
